@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+.index-nav .container-fluid{
+	margin:0;
+	padding:0;
+	background-color:#fff;
+}
+.navbar .container{
+	background-color:#fff;
+}
+.container-fluid .navbar{
+	background-color:#fff;
+}
+.dropdown-menu{
+	
+}

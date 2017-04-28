@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.LogOperationMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.LogOperation" >
+    <id column="OPERATION_ID" property="operationId" jdbcType="VARCHAR" />
+    <result column="LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="OPERATION_TYPE" property="operationType" jdbcType="CHAR" />
+    <result column="PRIMARY_KEY_VALUE" property="primaryKeyValue" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="OPERATION_TIME" property="operationTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    OPERATION_ID, LOG_ID, OPERATION_TYPE, PRIMARY_KEY_VALUE, CONTENT, URL, USER_ID, OPERATION_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_LOG_OPERATION
+    where OPERATION_ID = #{operationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_LOG_OPERATION
+    where OPERATION_ID = #{operationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.LogOperation" >
+    insert into T_LOG_OPERATION (OPERATION_ID, LOG_ID, OPERATION_TYPE, 
+      PRIMARY_KEY_VALUE, CONTENT, URL, 
+      USER_ID, OPERATION_TIME)
+    values (#{operationId,jdbcType=VARCHAR}, #{logId,jdbcType=VARCHAR}, #{operationType,jdbcType=CHAR}, 
+      #{primaryKeyValue,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{operationTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.LogOperation" >
+    insert into T_LOG_OPERATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operationId != null" >
+        OPERATION_ID,
+      </if>
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="operationType != null" >
+        OPERATION_TYPE,
+      </if>
+      <if test="primaryKeyValue != null" >
+        PRIMARY_KEY_VALUE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operationId != null" >
+        #{operationId,jdbcType=VARCHAR},
+      </if>
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null" >
+        #{operationType,jdbcType=CHAR},
+      </if>
+      <if test="primaryKeyValue != null" >
+        #{primaryKeyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.LogOperation" >
+    update T_LOG_OPERATION
+    <set >
+      <if test="logId != null" >
+        LOG_ID = #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationType != null" >
+        OPERATION_TYPE = #{operationType,jdbcType=CHAR},
+      </if>
+      <if test="primaryKeyValue != null" >
+        PRIMARY_KEY_VALUE = #{primaryKeyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME = #{operationTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OPERATION_ID = #{operationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.LogOperation" >
+    update T_LOG_OPERATION
+    set LOG_ID = #{logId,jdbcType=VARCHAR},
+      OPERATION_TYPE = #{operationType,jdbcType=CHAR},
+      PRIMARY_KEY_VALUE = #{primaryKeyValue,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      OPERATION_TIME = #{operationTime,jdbcType=VARCHAR}
+    where OPERATION_ID = #{operationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

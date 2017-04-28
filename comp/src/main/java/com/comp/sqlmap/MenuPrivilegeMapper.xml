@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.MenuPrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.MenuPrivilege" >
+    <id column="MENU_PRIVILEGE_ID" property="menuPrivilegeId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_ID" property="privilegeId" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="PRIVILEGES_TYPE" property="privilegesType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MENU_PRIVILEGE_ID, PRIVILEGE_ID, CODE, PRIVILEGES_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_MENU_PRIVILEGE
+    where MENU_PRIVILEGE_ID = #{menuPrivilegeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_MENU_PRIVILEGE
+    where MENU_PRIVILEGE_ID = #{menuPrivilegeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.MenuPrivilege" >
+    insert into T_MENU_PRIVILEGE (MENU_PRIVILEGE_ID, PRIVILEGE_ID, CODE, 
+      PRIVILEGES_TYPE)
+    values (#{menuPrivilegeId,jdbcType=VARCHAR}, #{privilegeId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{privilegesType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.MenuPrivilege" >
+    insert into T_MENU_PRIVILEGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuPrivilegeId != null" >
+        MENU_PRIVILEGE_ID,
+      </if>
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="privilegesType != null" >
+        PRIVILEGES_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuPrivilegeId != null" >
+        #{menuPrivilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeId != null" >
+        #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegesType != null" >
+        #{privilegesType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.MenuPrivilege" >
+    update T_MENU_PRIVILEGE
+    <set >
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegesType != null" >
+        PRIVILEGES_TYPE = #{privilegesType,jdbcType=CHAR},
+      </if>
+    </set>
+    where MENU_PRIVILEGE_ID = #{menuPrivilegeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.MenuPrivilege" >
+    update T_MENU_PRIVILEGE
+    set PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      PRIVILEGES_TYPE = #{privilegesType,jdbcType=CHAR}
+    where MENU_PRIVILEGE_ID = #{menuPrivilegeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

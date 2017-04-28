@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.PrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.Privilege" >
+    <id column="PRIVILEGE_ID" property="privilegeId" jdbcType="VARCHAR" />
+    <result column="PARENT_PRIVILEGE_ID" property="parentPrivilegeId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_NAME" property="privilegeName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="AVAILABLE" property="available" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PRIVILEGE_ID, PARENT_PRIVILEGE_ID, PRIVILEGE_NAME, CREATE_TIME, AVAILABLE, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PRIVILEGE
+    where PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_PRIVILEGE
+    where PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.Privilege" >
+    insert into T_PRIVILEGE (PRIVILEGE_ID, PARENT_PRIVILEGE_ID, PRIVILEGE_NAME, 
+      CREATE_TIME, AVAILABLE, DESCRIPTION
+      )
+    values (#{privilegeId,jdbcType=VARCHAR}, #{parentPrivilegeId,jdbcType=VARCHAR}, #{privilegeName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.Privilege" >
+    insert into T_PRIVILEGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID,
+      </if>
+      <if test="parentPrivilegeId != null" >
+        PARENT_PRIVILEGE_ID,
+      </if>
+      <if test="privilegeName != null" >
+        PRIVILEGE_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="available != null" >
+        AVAILABLE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="privilegeId != null" >
+        #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPrivilegeId != null" >
+        #{parentPrivilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeName != null" >
+        #{privilegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.Privilege" >
+    update T_PRIVILEGE
+    <set >
+      <if test="parentPrivilegeId != null" >
+        PARENT_PRIVILEGE_ID = #{parentPrivilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeName != null" >
+        PRIVILEGE_NAME = #{privilegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null" >
+        AVAILABLE = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.Privilege" >
+    update T_PRIVILEGE
+    set PARENT_PRIVILEGE_ID = #{parentPrivilegeId,jdbcType=VARCHAR},
+      PRIVILEGE_NAME = #{privilegeName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      AVAILABLE = #{available,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

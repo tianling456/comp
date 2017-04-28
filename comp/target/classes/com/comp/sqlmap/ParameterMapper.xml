@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.ParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.Parameter" >
+    <id column="PARAMETER_ID" property="parameterId" jdbcType="VARCHAR" />
+    <result column="PARAMETER_CODE" property="parameterCode" jdbcType="VARCHAR" />
+    <result column="PARAMETER_VALUE" property="parameterValue" jdbcType="VARCHAR" />
+    <result column="PARAMETER_NAME" property="parameterName" jdbcType="VARCHAR" />
+    <result column="PARAMETERA_VAILABLE" property="parameteraVailable" jdbcType="CHAR" />
+    <result column="DESCRIBE" property="describe" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    PARAMETER_ID, PARAMETER_CODE, PARAMETER_VALUE, PARAMETER_NAME, PARAMETERA_VAILABLE, 
+    DESCRIBE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_PARAMETER
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_PARAMETER
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.Parameter" >
+    insert into T_PARAMETER (PARAMETER_ID, PARAMETER_CODE, PARAMETER_VALUE, 
+      PARAMETER_NAME, PARAMETERA_VAILABLE, DESCRIBE
+      )
+    values (#{parameterId,jdbcType=VARCHAR}, #{parameterCode,jdbcType=VARCHAR}, #{parameterValue,jdbcType=VARCHAR}, 
+      #{parameterName,jdbcType=VARCHAR}, #{parameteraVailable,jdbcType=CHAR}, #{describe,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.Parameter" >
+    insert into T_PARAMETER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="parameterId != null" >
+        PARAMETER_ID,
+      </if>
+      <if test="parameterCode != null" >
+        PARAMETER_CODE,
+      </if>
+      <if test="parameterValue != null" >
+        PARAMETER_VALUE,
+      </if>
+      <if test="parameterName != null" >
+        PARAMETER_NAME,
+      </if>
+      <if test="parameteraVailable != null" >
+        PARAMETERA_VAILABLE,
+      </if>
+      <if test="describe != null" >
+        DESCRIBE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="parameterId != null" >
+        #{parameterId,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterCode != null" >
+        #{parameterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameteraVailable != null" >
+        #{parameteraVailable,jdbcType=CHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.Parameter" >
+    update T_PARAMETER
+    <set >
+      <if test="parameterCode != null" >
+        PARAMETER_CODE = #{parameterCode,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null" >
+        PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null" >
+        PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameteraVailable != null" >
+        PARAMETERA_VAILABLE = #{parameteraVailable,jdbcType=CHAR},
+      </if>
+      <if test="describe != null" >
+        DESCRIBE = #{describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.Parameter" >
+    update T_PARAMETER
+    set PARAMETER_CODE = #{parameterCode,jdbcType=VARCHAR},
+      PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR},
+      PARAMETERA_VAILABLE = #{parameteraVailable,jdbcType=CHAR},
+      DESCRIBE = #{describe,jdbcType=VARCHAR}
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </update>
+</mapper>

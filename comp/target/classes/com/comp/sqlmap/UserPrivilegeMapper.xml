@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.UserPrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.UserPrivilege" >
+    <id column="USER_PRIVILEGE_ID" property="userPrivilegeId" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_ID" property="privilegeId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_TYPE" property="privilegeType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_PRIVILEGE_ID, USER_ID, PRIVILEGE_ID, PRIVILEGE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER_PRIVILEGE
+    where USER_PRIVILEGE_ID = #{userPrivilegeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_USER_PRIVILEGE
+    where USER_PRIVILEGE_ID = #{userPrivilegeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.UserPrivilege" >
+    insert into T_USER_PRIVILEGE (USER_PRIVILEGE_ID, USER_ID, PRIVILEGE_ID, 
+      PRIVILEGE_TYPE)
+    values (#{userPrivilegeId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{privilegeId,jdbcType=VARCHAR}, 
+      #{privilegeType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.UserPrivilege" >
+    insert into T_USER_PRIVILEGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userPrivilegeId != null" >
+        USER_PRIVILEGE_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID,
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userPrivilegeId != null" >
+        #{userPrivilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeId != null" >
+        #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        #{privilegeType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.UserPrivilege" >
+    update T_USER_PRIVILEGE
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE = #{privilegeType,jdbcType=CHAR},
+      </if>
+    </set>
+    where USER_PRIVILEGE_ID = #{userPrivilegeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.UserPrivilege" >
+    update T_USER_PRIVILEGE
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      PRIVILEGE_TYPE = #{privilegeType,jdbcType=CHAR}
+    where USER_PRIVILEGE_ID = #{userPrivilegeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

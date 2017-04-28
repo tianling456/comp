@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.User" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.User" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="LOGIN_TYPE" property="loginType" jdbcType="VARCHAR" />
+    <result column="USER_UUID" property="userUuid" jdbcType="VARCHAR" />
+    <result column="AVAILABLE" property="available" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, ORGANIZATION_ID, USER_NAME, PASSWORD, NAME, LOGIN_TYPE, USER_UUID, AVAILABLE, 
+    SALT
+  </sql>
+  <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteById" parameterType="java.lang.String" >
+    delete from T_USER
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.User" >
+    insert into T_USER (USER_ID, ORGANIZATION_ID, USER_NAME, 
+      PASSWORD, NAME, LOGIN_TYPE, 
+      USER_UUID, AVAILABLE, SALT
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{organizationId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{loginType,jdbcType=VARCHAR}, 
+      #{userUuid,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.User" >
+    insert into T_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="loginType != null" >
+        LOGIN_TYPE,
+      </if>
+      <if test="userUuid != null" >
+        USER_UUID,
+      </if>
+      <if test="available != null" >
+        AVAILABLE,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        #{loginType,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null" >
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="tavailable != null" >
+        #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.User" >
+    update T_USER
+    <set >
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null" >
+        LOGIN_TYPE = #{loginType,jdbcType=VARCHAR},
+      </if>
+      <if test="userUuid != null" >
+        USER_UUID = #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="AVAILABLE != null" >
+        AVAILABLE = #{available,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.User" >
+    update T_USER
+    set ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      LOGIN_TYPE = #{loginType,jdbcType=VARCHAR},
+      USER_UUID = #{userUuid,jdbcType=VARCHAR},
+      AVAILABLE = #{available,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findByUserName" parameterType="map" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" /> 
+ 	from T_USER
+  	<where>
+	  	<if test="userName!=null and userName!=''">
+	  		USER_NAME = #{userName,jdbcType=VARCHAR}
+	  	</if>
+  	</where>
+  </select>
+  
+  <select id="queryForList" parameterType="map" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" /> 
+ 	from T_USER
+ 	<where>
+	  	<if test="salt!= null and salt!= ''">
+	  		SALT = #{salt,jdbcType=VARCHAR,javaType=java.lang.String}
+	  	</if>
+  	</where>
+  </select>
+  
+</mapper>

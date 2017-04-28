@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.LogSettinDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.LogSettinDetail" >
+    <id column="DETAIL_ID" property="detailId" jdbcType="VARCHAR" />
+    <result column="LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="COLUMN_NAME" property="columnName" jdbcType="VARCHAR" />
+    <result column="COLUMN_TEXT" property="columnText" jdbcType="VARCHAR" />
+    <result column="COLUMN_DATA_TYPE" property="columnDataType" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="OPERATION_TIME" property="operationTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DETAIL_ID, LOG_ID, COLUMN_NAME, COLUMN_TEXT, COLUMN_DATA_TYPE, USER_ID, OPERATION_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_LOG_SETTING_DETAIL
+    where DETAIL_ID = #{detailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_LOG_SETTING_DETAIL
+    where DETAIL_ID = #{detailId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.LogSettinDetail" >
+    insert into T_LOG_SETTING_DETAIL (DETAIL_ID, LOG_ID, COLUMN_NAME, 
+      COLUMN_TEXT, COLUMN_DATA_TYPE, USER_ID, 
+      OPERATION_TIME)
+    values (#{detailId,jdbcType=VARCHAR}, #{logId,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, 
+      #{columnText,jdbcType=VARCHAR}, #{columnDataType,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{operationTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.LogSettinDetail" >
+    insert into T_LOG_SETTING_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        DETAIL_ID,
+      </if>
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME,
+      </if>
+      <if test="columnText != null" >
+        COLUMN_TEXT,
+      </if>
+      <if test="columnDataType != null" >
+        COLUMN_DATA_TYPE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="detailId != null" >
+        #{detailId,jdbcType=VARCHAR},
+      </if>
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnText != null" >
+        #{columnText,jdbcType=VARCHAR},
+      </if>
+      <if test="columnDataType != null" >
+        #{columnDataType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.LogSettinDetail" >
+    update T_LOG_SETTING_DETAIL
+    <set >
+      <if test="logId != null" >
+        LOG_ID = #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null" >
+        COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnText != null" >
+        COLUMN_TEXT = #{columnText,jdbcType=VARCHAR},
+      </if>
+      <if test="columnDataType != null" >
+        COLUMN_DATA_TYPE = #{columnDataType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME = #{operationTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DETAIL_ID = #{detailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.LogSettinDetail" >
+    update T_LOG_SETTING_DETAIL
+    set LOG_ID = #{logId,jdbcType=VARCHAR},
+      COLUMN_NAME = #{columnName,jdbcType=VARCHAR},
+      COLUMN_TEXT = #{columnText,jdbcType=VARCHAR},
+      COLUMN_DATA_TYPE = #{columnDataType,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      OPERATION_TIME = #{operationTime,jdbcType=VARCHAR}
+    where DETAIL_ID = #{detailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

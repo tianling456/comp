@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.Organization" >
+    <id column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+    <result column="PARENT_ORGANIZATION_ID" property="parentOrganizationId" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_NAME" property="organizationName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORGANIZATION_ID, PARENT_ORGANIZATION_ID, ORGANIZATION_NAME, CREATE_TIME, DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_ORGANIZATION
+    where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_ORGANIZATION
+    where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.Organization" >
+    insert into T_ORGANIZATION (ORGANIZATION_ID, PARENT_ORGANIZATION_ID, 
+      ORGANIZATION_NAME, CREATE_TIME, DESCRIPTION
+      )
+    values (#{organizationId,jdbcType=VARCHAR}, #{parentOrganizationId,jdbcType=VARCHAR}, 
+      #{organizationName,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.Organization" >
+    insert into T_ORGANIZATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        ORGANIZATION_ID,
+      </if>
+      <if test="parentOrganizationId != null" >
+        PARENT_ORGANIZATION_ID,
+      </if>
+      <if test="organizationName != null" >
+        ORGANIZATION_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentOrganizationId != null" >
+        #{parentOrganizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.Organization" >
+    update T_ORGANIZATION
+    <set >
+      <if test="parentOrganizationId != null" >
+        PARENT_ORGANIZATION_ID = #{parentOrganizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        ORGANIZATION_NAME = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.Organization" >
+    update T_ORGANIZATION
+    set PARENT_ORGANIZATION_ID = #{parentOrganizationId,jdbcType=VARCHAR},
+      ORGANIZATION_NAME = #{organizationName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR}
+  </update>
+</mapper>

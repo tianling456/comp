@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.LogSettingMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.LogSetting" >
+    <id column="LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="TABLE_NAME" property="tableName" jdbcType="VARCHAR" />
+    <result column="BUSSINESS_NAME" property="bussinessName" jdbcType="VARCHAR" />
+    <result column="PRIMARY_KEY" property="primaryKey" jdbcType="VARCHAR" />
+    <result column="URL_TEMPLATE" property="urlTemplate" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="OPERATION_TIME" property="operationTime" jdbcType="VARCHAR" />
+    <result column="DELETE_SCRIPT_TEMPLATE" property="deleteScriptTemplate" jdbcType="VARCHAR" />
+    <result column="SCRIPT_TEMPLATE" property="scriptTemplate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOG_ID, TABLE_NAME, BUSSINESS_NAME, PRIMARY_KEY, URL_TEMPLATE, USER_ID, OPERATION_TIME, 
+    DELETE_SCRIPT_TEMPLATE, SCRIPT_TEMPLATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_LOG_SETTING
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_LOG_SETTING
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.LogSetting" >
+    insert into T_LOG_SETTING (LOG_ID, TABLE_NAME, BUSSINESS_NAME, 
+      PRIMARY_KEY, URL_TEMPLATE, USER_ID, 
+      OPERATION_TIME, DELETE_SCRIPT_TEMPLATE, SCRIPT_TEMPLATE
+      )
+    values (#{logId,jdbcType=VARCHAR}, #{tableName,jdbcType=VARCHAR}, #{bussinessName,jdbcType=VARCHAR}, 
+      #{primaryKey,jdbcType=VARCHAR}, #{urlTemplate,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{operationTime,jdbcType=VARCHAR}, #{deleteScriptTemplate,jdbcType=VARCHAR}, #{scriptTemplate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.LogSetting" >
+    insert into T_LOG_SETTING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="tableName != null" >
+        TABLE_NAME,
+      </if>
+      <if test="bussinessName != null" >
+        BUSSINESS_NAME,
+      </if>
+      <if test="primaryKey != null" >
+        PRIMARY_KEY,
+      </if>
+      <if test="urlTemplate != null" >
+        URL_TEMPLATE,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME,
+      </if>
+      <if test="deleteScriptTemplate != null" >
+        DELETE_SCRIPT_TEMPLATE,
+      </if>
+      <if test="scriptTemplate != null" >
+        SCRIPT_TEMPLATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="tableName != null" >
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessName != null" >
+        #{bussinessName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTemplate != null" >
+        #{urlTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteScriptTemplate != null" >
+        #{deleteScriptTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="scriptTemplate != null" >
+        #{scriptTemplate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.LogSetting" >
+    update T_LOG_SETTING
+    <set >
+      <if test="tableName != null" >
+        TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="bussinessName != null" >
+        BUSSINESS_NAME = #{bussinessName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        PRIMARY_KEY = #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="urlTemplate != null" >
+        URL_TEMPLATE = #{urlTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        OPERATION_TIME = #{operationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteScriptTemplate != null" >
+        DELETE_SCRIPT_TEMPLATE = #{deleteScriptTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="scriptTemplate != null" >
+        SCRIPT_TEMPLATE = #{scriptTemplate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.LogSetting" >
+    update T_LOG_SETTING
+    set TABLE_NAME = #{tableName,jdbcType=VARCHAR},
+      BUSSINESS_NAME = #{bussinessName,jdbcType=VARCHAR},
+      PRIMARY_KEY = #{primaryKey,jdbcType=VARCHAR},
+      URL_TEMPLATE = #{urlTemplate,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      OPERATION_TIME = #{operationTime,jdbcType=VARCHAR},
+      DELETE_SCRIPT_TEMPLATE = #{deleteScriptTemplate,jdbcType=VARCHAR},
+      SCRIPT_TEMPLATE = #{scriptTemplate,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.LoginOutLogMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.LoginOutLog" >
+    <id column="LOG_ID" property="logId" jdbcType="VARCHAR" />
+    <result column="LOGIN_ADDRESS" property="loginAddress" jdbcType="VARCHAR" />
+    <result column="IP_ADDRESS" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="VARCHAR" />
+    <result column="LOGOUT_TIME" property="logoutTime" jdbcType="VARCHAR" />
+    <result column="COMPUTER_NAME" property="computerName" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="MAC_ID" property="macId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    LOG_ID, LOGIN_ADDRESS, IP_ADDRESS, USER_NAME, LOGIN_TIME, LOGOUT_TIME, COMPUTER_NAME, 
+    USER_ID, MAC_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_LOGIN_OUT_LOG
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_LOGIN_OUT_LOG
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.LoginOutLog" >
+    insert into T_LOGIN_OUT_LOG (LOG_ID, LOGIN_ADDRESS, IP_ADDRESS, 
+      USER_NAME, LOGIN_TIME, LOGOUT_TIME, 
+      COMPUTER_NAME, USER_ID, MAC_ID
+      )
+    values (#{logId,jdbcType=VARCHAR}, #{loginAddress,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{loginTime,jdbcType=VARCHAR}, #{logoutTime,jdbcType=VARCHAR}, 
+      #{computerName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{macId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.LoginOutLog" >
+    insert into T_LOGIN_OUT_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        LOG_ID,
+      </if>
+      <if test="loginAddress != null" >
+        LOGIN_ADDRESS,
+      </if>
+      <if test="ipAddress != null" >
+        IP_ADDRESS,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME,
+      </if>
+      <if test="logoutTime != null" >
+        LOGOUT_TIME,
+      </if>
+      <if test="computerName != null" >
+        COMPUTER_NAME,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="macId != null" >
+        MAC_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAddress != null" >
+        #{loginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutTime != null" >
+        #{logoutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="computerName != null" >
+        #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="macId != null" >
+        #{macId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.LoginOutLog" >
+    update T_LOGIN_OUT_LOG
+    <set >
+      <if test="loginAddress != null" >
+        LOGIN_ADDRESS = #{loginAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME = #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutTime != null" >
+        LOGOUT_TIME = #{logoutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="computerName != null" >
+        COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="macId != null" >
+        MAC_ID = #{macId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.LoginOutLog" >
+    update T_LOGIN_OUT_LOG
+    set LOGIN_ADDRESS = #{loginAddress,jdbcType=VARCHAR},
+      IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      LOGIN_TIME = #{loginTime,jdbcType=VARCHAR},
+      LOGOUT_TIME = #{logoutTime,jdbcType=VARCHAR},
+      COMPUTER_NAME = #{computerName,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      MAC_ID = #{macId,jdbcType=VARCHAR}
+    where LOG_ID = #{logId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.UserInfo" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="NATIVEPLACE" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="INTEREST" property="interest" jdbcType="VARCHAR" />
+    <result column="CONSTELLATION" property="constellation" jdbcType="VARCHAR" />
+    <result column="EDUCATION" property="education" jdbcType="VARCHAR" />
+    <result column="NATIONALITY" property="nationality" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="CHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="VARCHAR" />
+    <result column="UNIVERSITY" property="university" jdbcType="VARCHAR" />
+    <result column="PHOTO" property="photo" jdbcType="VARCHAR" />
+    <result column="MAJOR" property="major" jdbcType="VARCHAR" />
+    <result column="ACADEMY" property="academy" jdbcType="VARCHAR" />
+    <result column="CAREER" property="career" jdbcType="VARCHAR" />
+    <result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, USER_NAME, NATIVEPLACE, INTEREST, CONSTELLATION, EDUCATION, NATIONALITY, 
+    SEX, MOBILE, EMAIL, BIRTHDAY, UNIVERSITY, PHOTO, MAJOR, ACADEMY, CAREER, COMPANY, 
+    JOB, ADDRESS, COUNTRY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_USERINFO
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_USERINFO
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.UserInfo" >
+    insert into T_USERINFO (USER_ID, USER_NAME, NATIVEPLACE, 
+      INTEREST, CONSTELLATION, EDUCATION, 
+      NATIONALITY, SEX, MOBILE, 
+      EMAIL, BIRTHDAY, UNIVERSITY, 
+      PHOTO, MAJOR, ACADEMY, 
+      CAREER, COMPANY, JOB, 
+      ADDRESS, COUNTRY)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{nativeplace,jdbcType=VARCHAR}, 
+      #{interest,jdbcType=VARCHAR}, #{constellation,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{university,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{academy,jdbcType=VARCHAR}, 
+      #{career,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{country,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.UserInfo" >
+    insert into T_USERINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="nativeplace != null" >
+        NATIVEPLACE,
+      </if>
+      <if test="interest != null" >
+        INTEREST,
+      </if>
+      <if test="constellation != null" >
+        CONSTELLATION,
+      </if>
+      <if test="education != null" >
+        EDUCATION,
+      </if>
+      <if test="nationality != null" >
+        NATIONALITY,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="university != null" >
+        UNIVERSITY,
+      </if>
+      <if test="photo != null" >
+        PHOTO,
+      </if>
+      <if test="major != null" >
+        MAJOR,
+      </if>
+      <if test="academy != null" >
+        ACADEMY,
+      </if>
+      <if test="career != null" >
+        CAREER,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="country != null" >
+        COUNTRY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="constellation != null" >
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="university != null" >
+        #{university,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null" >
+        #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null" >
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.UserInfo" >
+    update T_USERINFO
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeplace != null" >
+        NATIVEPLACE = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        INTEREST = #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="constellation != null" >
+        CONSTELLATION = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null" >
+        EDUCATION = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null" >
+        NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="university != null" >
+        UNIVERSITY = #{university,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null" >
+        PHOTO = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null" >
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null" >
+        ACADEMY = #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null" >
+        CAREER = #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        COMPANY = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        COUNTRY = #{country,jdbcType=CHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.UserInfo" >
+    update T_USERINFO
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      NATIVEPLACE = #{nativeplace,jdbcType=VARCHAR},
+      INTEREST = #{interest,jdbcType=VARCHAR},
+      CONSTELLATION = #{constellation,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=CHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      UNIVERSITY = #{university,jdbcType=VARCHAR},
+      PHOTO = #{photo,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=VARCHAR},
+      ACADEMY = #{academy,jdbcType=VARCHAR},
+      CAREER = #{career,jdbcType=VARCHAR},
+      COMPANY = #{company,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=CHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

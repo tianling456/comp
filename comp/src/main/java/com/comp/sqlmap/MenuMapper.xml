@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.MenuMapper">
+	<resultMap id="BaseResultMap" type="com.comp.entities.Menu">
+		<id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+		<result column="CODE" property="code" jdbcType="VARCHAR" />
+		<result column="URL" property="url" jdbcType="VARCHAR" />
+		<result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+		<result column="IMAGE_URL" property="imageUrl" jdbcType="VARCHAR" />
+		<result column="SHORT_CUT" property="shortCut" jdbcType="VARCHAR" />
+		<result column="SORT" property="sort" jdbcType="VARCHAR" />
+		<result column="GRADE" property="grade" jdbcType="VARCHAR" />
+		<result column="AVAILABLE" property="deleteMark" jdbcType="CHAR" />
+		<result column="MENU_TYPE" property="menuType" jdbcType="CHAR" />
+		<result column="ALLOW_EDIT" property="allowEdit" jdbcType="CHAR" />
+		<result column="SUPER_MENU" property="superMenu" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		MENU_ID, CODE, URL, MENU_NAME, IMAGE_URL, SHORT_CUT, SORT, GRADE, DELETE_MARK,
+		MENU_TYPE,
+		ALLOW_EDIT, SUPER_MENU
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_MENU
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from T_MENU
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.comp.entities.Menu">
+		insert into T_MENU (MENU_ID, CODE, URL,
+		MENU_NAME, IMAGE_URL, SHORT_CUT,
+		SORT, GRADE, DELETE_MARK,
+		MENU_TYPE, ALLOW_EDIT, SUPER_MENU
+		)
+		values (#{menuId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{menuName,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, #{shortCut,jdbcType=VARCHAR},
+		#{sort,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR},
+		#{deleteMark,jdbcType=CHAR},
+		#{menuType,jdbcType=CHAR}, #{allowEdit,jdbcType=CHAR}, #{superMenu,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.comp.entities.Menu">
+		insert into T_MENU
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				MENU_ID,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="url != null">
+				URL,
+			</if>
+			<if test="menuName != null">
+				MENU_NAME,
+			</if>
+			<if test="imageUrl != null">
+				IMAGE_URL,
+			</if>
+			<if test="shortCut != null">
+				SHORT_CUT,
+			</if>
+			<if test="sort != null">
+				SORT,
+			</if>
+			<if test="grade != null">
+				GRADE,
+			</if>
+			<if test="deleteMark != null">
+				DELETE_MARK,
+			</if>
+			<if test="menuType != null">
+				MENU_TYPE,
+			</if>
+			<if test="allowEdit != null">
+				ALLOW_EDIT,
+			</if>
+			<if test="superMenu != null">
+				SUPER_MENU,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="menuId != null">
+				#{menuId,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="menuName != null">
+				#{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="imageUrl != null">
+				#{imageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="shortCut != null">
+				#{shortCut,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null">
+				#{grade,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteMark != null">
+				#{deleteMark,jdbcType=CHAR},
+			</if>
+			<if test="menuType != null">
+				#{menuType,jdbcType=CHAR},
+			</if>
+			<if test="allowEdit != null">
+				#{allowEdit,jdbcType=CHAR},
+			</if>
+			<if test="superMenu != null">
+				#{superMenu,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.Menu">
+		update T_MENU
+		<set>
+			<if test="code != null">
+				CODE = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				URL = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="menuName != null">
+				MENU_NAME = #{menuName,jdbcType=VARCHAR},
+			</if>
+			<if test="imageUrl != null">
+				IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="shortCut != null">
+				SHORT_CUT = #{shortCut,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				SORT = #{sort,jdbcType=VARCHAR},
+			</if>
+			<if test="grade != null">
+				GRADE = #{grade,jdbcType=VARCHAR},
+			</if>
+			<if test="deleteMark != null">
+				DELETE_MARK = #{deleteMark,jdbcType=CHAR},
+			</if>
+			<if test="menuType != null">
+				MENU_TYPE = #{menuType,jdbcType=CHAR},
+			</if>
+			<if test="allowEdit != null">
+				ALLOW_EDIT = #{allowEdit,jdbcType=CHAR},
+			</if>
+			<if test="superMenu != null">
+				SUPER_MENU = #{superMenu,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.comp.entities.Menu">
+		update T_MENU
+		set CODE = #{code,jdbcType=VARCHAR},
+		URL = #{url,jdbcType=VARCHAR},
+		MENU_NAME = #{menuName,jdbcType=VARCHAR},
+		IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+		SHORT_CUT = #{shortCut,jdbcType=VARCHAR},
+		SORT = #{sort,jdbcType=VARCHAR},
+		GRADE = #{grade,jdbcType=VARCHAR},
+		DELETE_MARK = #{deleteMark,jdbcType=CHAR},
+		MENU_TYPE = #{menuType,jdbcType=CHAR},
+		ALLOW_EDIT = #{allowEdit,jdbcType=CHAR},
+		SUPER_MENU = #{superMenu,jdbcType=VARCHAR}
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</update>
+
+
+	<select id="queryMenuByUserId" parameterType="map" resultMap="BaseResultMap">
+		<!-- <![CDATA[ -->
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_user_group ug,
+		t_user u,
+		t_group_privilege gp,
+		t_privilege p,
+		t_group g,
+		t_menu_privilege mp,
+		t_menu m
+		<!-- ]]> -->
+		<where>
+			u.user_id = ug.user_id
+			AND u.available = 'Y'
+			AND ug.group_id = g.group_id
+			AND g.group_id = gp.group_id
+			AND g.available = 'Y'
+			AND gp.privilege_id = p.privilege_id
+			AND p.available = 'Y'
+			AND p.privilege_id = mp.privilege_id
+			AND mp.menu_id = m.menu_id
+			AND m.available = 'Y'
+			<if test="userName != null and userName != ''">
+				user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+		</where>
+		UNION
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_user u,
+		t_user_role ur,
+		t_role r,
+		t_role_privilege rp,
+		t_privilege p,
+		t_menu_privilege mp,
+		t_menu m
+		<where>
+			u.user_id = ur.user_id
+			AND u.available = 'Y'
+			AND ur.role_id = r.role_id
+			AND r.available = 'Y'
+			AND r.role_id = rp.role_id
+			AND rp.privilege_id = p.privilege_id
+			AND p.available = 'Y'
+			AND p.privilege_id = mp.menu_privilege_id
+			AND mp.menu_id = m.menu_id
+			AND m.available = 'Y'
+			<if test="userName != null and userName != ''">
+				user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+		</where>
+		UNION
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM
+		t_user u,
+		t_user_privilege up,
+		t_privilege p,
+		t_menu_privilege mp,
+		t_menu m
+		<where>
+			u.user_id = up.user_id
+			AND u.available = 'Y'
+			AND up.privilege_id = p.privilege_id
+			AND p.available = 'Y'
+			AND p.privilege_id = mp.menu_privilege_id
+			AND mp.menu_id = m.menu_id
+			AND m.available = 'Y'
+			<if test="userName != null and userName != ''">
+				user_name = #{userName,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+</mapper>

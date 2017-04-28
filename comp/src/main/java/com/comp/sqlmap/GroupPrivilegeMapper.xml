@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.GroupPrivilege" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.GroupPrivilege" >
+    <id column="GROUP_PRIVILEGE_ID" property="groupPrivilegeId" jdbcType="VARCHAR" />
+    <result column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_ID" property="privilegeId" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_TYPE" property="privilegeType" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GROUP_PRIVILEGE_ID, GROUP_ID, PRIVILEGE_ID, PRIVILEGE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_GROUP_PRIVILEGE
+    where GROUP_PRIVILEGE_ID = #{groupPrivilegeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_GROUP_PRIVILEGE
+    where GROUP_PRIVILEGE_ID = #{groupPrivilegeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.GroupPrivilege" >
+    insert into T_GROUP_PRIVILEGE (GROUP_PRIVILEGE_ID, GROUP_ID, PRIVILEGE_ID, 
+      PRIVILEGE_TYPE)
+    values (#{groupPrivilegeId,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{privilegeId,jdbcType=VARCHAR}, 
+      #{privilegeType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.GroupPrivilege" >
+    insert into T_GROUP_PRIVILEGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupPrivilegeId != null" >
+        GROUP_PRIVILEGE_ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID,
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupPrivilegeId != null" >
+        #{groupPrivilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeId != null" >
+        #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        #{privilegeType,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.GroupPrivilege" >
+    update T_GROUP_PRIVILEGE
+    <set >
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeId != null" >
+        PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE = #{privilegeType,jdbcType=CHAR},
+      </if>
+    </set>
+    where GROUP_PRIVILEGE_ID = #{groupPrivilegeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.GroupPrivilege" >
+    update T_GROUP_PRIVILEGE
+    set GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      PRIVILEGE_ID = #{privilegeId,jdbcType=VARCHAR},
+      PRIVILEGE_TYPE = #{privilegeType,jdbcType=CHAR}
+    where GROUP_PRIVILEGE_ID = #{groupPrivilegeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

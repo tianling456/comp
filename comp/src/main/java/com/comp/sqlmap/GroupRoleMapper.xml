@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.comp.entities.GroupRole" >
+  <resultMap id="BaseResultMap" type="com.comp.entities.GroupRole" >
+    <id column="GROUP_ROLE_ID" property="groupRoleId" jdbcType="VARCHAR" />
+    <result column="GROUP_ID" property="groupId" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GROUP_ROLE_ID, GROUP_ID, ROLE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_GROUP_ROLE
+    where GROUP_ROLE_ID = #{groupRoleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_GROUP_ROLE
+    where GROUP_ROLE_ID = #{groupRoleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.comp.entities.GroupRole" >
+    insert into T_GROUP_ROLE (GROUP_ROLE_ID, GROUP_ID, ROLE_ID
+      )
+    values (#{groupRoleId,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.comp.entities.GroupRole" >
+    insert into T_GROUP_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupRoleId != null" >
+        GROUP_ROLE_ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupRoleId != null" >
+        #{groupRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.comp.entities.GroupRole" >
+    update T_GROUP_ROLE
+    <set >
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GROUP_ROLE_ID = #{groupRoleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.comp.entities.GroupRole" >
+    update T_GROUP_ROLE
+    set GROUP_ID = #{groupId,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR}
+    where GROUP_ROLE_ID = #{groupRoleId,jdbcType=VARCHAR}
+  </update>
+</mapper>
