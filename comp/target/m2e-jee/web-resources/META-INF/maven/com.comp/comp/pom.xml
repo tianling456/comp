@@ -36,6 +36,7 @@
 			<version>4.9</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -113,19 +114,19 @@
 		</dependency>
 		<!-- springframe end -->
 
-        <!-- activiti start -->
-        <dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-engine</artifactId>  
-		    <version>${activiti.version}</version>  
-		</dependency>  
-		  
-		<dependency>  
-		    <groupId>org.activiti</groupId>  
-		    <artifactId>activiti-spring</artifactId>
-		    <version>${activiti.version}</version>
+		<!-- activiti start -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
 		</dependency>
-        <!-- activiti end -->
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		<!-- activiti end -->
 		<!-- cglib配置 start -->
 		<dependency>
 			<groupId>cglib</groupId>
@@ -450,12 +451,13 @@
 			<version>1.10</version>
 		</dependency>
 
+		<!-- 命令行调用jar包 start -->
 		<dependency>
 			<groupId>gnu.getopt</groupId>
 			<artifactId>java-getopt</artifactId>
 			<version>1.0.13</version>
 		</dependency>
-
+		<!-- 命令行调用jar包 end -->
 		<dependency>
 			<groupId>javaconfig</groupId>
 			<artifactId>javaconfig</artifactId>
@@ -494,8 +496,17 @@
 		</dependency>
 
 		<!-- quartz任务调度 -->
-		<!-- <dependency> <groupId>org.quartz</groupId> <artifactId>quartz-all</artifactId> 
-			<version>2.2.0</version> </dependency> -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+		
 		<!-- rar解压包 -->
 		<dependency>
 			<groupId>com.github.junrar</groupId>
@@ -511,36 +522,38 @@
 		</dependency>
 		<!-- ECharts报表 -->
 		<dependency>
-		    <groupId>com.github.abel533</groupId>
-		    <artifactId>ECharts</artifactId>
-		    <version>3.0.0</version>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>ECharts</artifactId>
+			<version>3.0.0</version>
 		</dependency>
+
 
 	</dependencies>
 
 	<build>
 		<finalName>comp</finalName>
 		<plugins>
-        <plugin>
-           <groupId>org.apache.maven.plugins</groupId>
-           <artifactId>maven-shade-plugin</artifactId>
-           <version>1.2.1</version>
-           <executions>
-                      <execution>
-               <phase>package</phase>
-               <goals>
-                     <goal>shade</goal>
-               </goals>
-               <configuration>
-                     <transformers>
-                       <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>com/src/main/java</mainClass>
-                      </transformer>
-                     </transformers>
-               </configuration>
-                </execution>
-           </executions>
-        </plugin>
-        </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+									<mainClass>com/src/main/java</mainClass>
+								</transformer>
+							</transformers>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>
