@@ -1,5 +1,6 @@
 package com.base.util.spring;
 
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,5 +21,9 @@ public abstract class SpringUtil {
 		ApplicationContext ac = getContext();
 		T bean = ac.getBean(beanName, clazz);
 		return bean;
+	}
+	@SuppressWarnings("unchecked")
+	public static <T> T getBean(String name) throws BeansException {
+		return (T) ac.getBean(name);
 	}
 }
