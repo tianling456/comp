@@ -24,7 +24,7 @@
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>  
 	
 	<!-- 导入文件 -->
-	<import resource="classpath*:config/spring-shiro.xml" />
+	<!-- <import resource="classpath*:config/spring-shiro.xml" /> -->
 	<import resource="classpath*:config/spring-mybatis.xml" />
 	<!-- oracle -->
 	<import resource="classpath*:config/spring-datasource.xml" />
@@ -34,8 +34,8 @@
 	<!-- <import resource="classpath*:config/spring-jta.xml" /> -->
 	<import resource="classpath*:config/spring-transaction.xml" />
 	<import resource="classpath*:config/spring-ehcach.xml" />
-	
-	<import resource="classpath*:config/spring-quartz.xml" />
+	<import resource="classpath*:config/spring-ehcach.xml" />
+	<import resource="classpath*:config/spring-kaptcha.xml" />
 	<!-- 开启AOP注解配置 ,proxy-target-class="true" 使用cglib的代理-->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	

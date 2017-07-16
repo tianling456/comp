@@ -36,6 +36,12 @@ public class UserController {
 	@Autowired
 	//@Qualifier("userService")
 	private UserService userService;
+	/**
+	 * 登录校验
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value="/checkLogin",method=RequestMethod.POST)
 	public String checkLogin(HttpServletRequest request,HttpServletResponse response){
 		String username = (String) request.getParameter("username");
@@ -62,23 +68,38 @@ public class UserController {
 			return "/user/login";
 		}
 	}
+	/**
+	 * 用户登录
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		//登录失败冲request中取出异常信息
-		String shiroLoginFailure = request.getParameter("shiroLoginFailure");
-		if(shiroLoginFailure!=null){
-			if(UnknownAccountException.class.getName().equals(shiroLoginFailure)){
-				throw new ControllerException("密码/账号错误！");
-//			}
-//			else if("RandomCodeError".equals(shiroLoginFailure)){
-//				throw new ControllerException("验证码错误！");
-			}else{
-				throw new ControllerException();
-			}
-		}
-		//登录成功shiro会跳转到上一个路径
-		//d登录失败跳转到登录页面
 		return "/user/login";
+	}
+	/**
+	 * 注册用户
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/register")
+	public String register(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		return "/user/register";
+	}
+	/**
+	 * 权限不足
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/refuse")
+	public String refuse(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		return "/user/refuse";
 	}
 }
 

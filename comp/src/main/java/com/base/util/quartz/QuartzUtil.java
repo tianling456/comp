@@ -20,8 +20,8 @@ import org.quartz.impl.StdScheduler;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
-import com.base.entity.Quartz;
 import com.base.util.spring.SpringUtil;
+import com.comp.entities.Quartz;
 
 /**
  *项目名：
@@ -34,19 +34,15 @@ import com.base.util.spring.SpringUtil;
  */
 public class QuartzUtil {
 	public static final Logger log = Logger.getLogger(QuartzUtil.class);
-	public static StdScheduler getStdScheduler(){
-		StdScheduler scheduler = SpringUtil.getBean("scheduler", StdScheduler.class);
-		return scheduler;
-	}
+	private static StdScheduler scheduler = SpringUtil.getBean("scheduler", StdScheduler.class);
 	
 	public static void init() throws Exception {
-//        Scheduler scheduler = getStdScheduler();
           //这里从数据库中获取任务信息数据
 //        List<Quartz> jobList = scheduleJobMapper.getAll();
 //        for (Quartz quartz : jobList) {
 //            addJob(quartz);
 //        }
-        System.out.println(getStdScheduler());
+        System.out.println(scheduler);
     }
 	/** 
      * 添加任务 
@@ -59,9 +55,9 @@ public class QuartzUtil {
             return;  
         }  
 //        StdScheduler scheduler = schedulerFactoryBean.getScheduler();  
-        log.debug(getStdScheduler() + ".......................................................................................add");  
+        log.debug(scheduler + ".......................................................................................add");  
         TriggerKey triggerKey = TriggerKey.triggerKey(quartz.getJobName(), quartz.getJobGroup());  
-        CronTrigger trigger = (CronTrigger) getStdScheduler().getTrigger(triggerKey);  
+        CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);  
         // 不存在，创建一个  
         if (null == trigger) {  
             Class clazz = Quartz.CONCURRENT_IS.equals(quartz.getIsConcurrent()) ? QuartzJobFactory.class : QuartzJobFactoryDisallowConcurrentExecution.class;  
@@ -69,14 +65,14 @@ public class QuartzUtil {
             jobDetail.getJobDataMap().put("scheduleJob", quartz);  
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(quartz.getCronExpression());  
             trigger = TriggerBuilder.newTrigger().withIdentity(quartz.getJobName(), quartz.getJobGroup()).withSchedule(scheduleBuilder).build();  
-            getStdScheduler().scheduleJob(jobDetail, trigger);  
+            scheduler.scheduleJob(jobDetail, trigger);
         } else {  
             // Trigger已存在，那么更新相应的定时设置  
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(quartz.getCronExpression());  
             // 按新的cronExpression表达式重新构建trigger  
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();  
             // 按新的trigger重新设置job执行  
-            getStdScheduler().rescheduleJob(triggerKey, trigger);  
+            scheduler.rescheduleJob(triggerKey, trigger);
         }  
     }  
     
@@ -87,7 +83,6 @@ public class QuartzUtil {
      * @throws SchedulerException  
      */  
     public List<Quartz> getAllJob() throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         GroupMatcher<JobKey> matcher = GroupMatcher.anyJobGroup();  
         Set<JobKey> jobKeys = scheduler.getJobKeys(matcher);  
         List<Quartz> jobList = new ArrayList<Quartz>();  
@@ -118,7 +113,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public List<Quartz> getRunningJob() throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         List<JobExecutionContext> executingJobs = scheduler.getCurrentlyExecutingJobs();  
         List<Quartz> jobList = new ArrayList<Quartz>(executingJobs.size());  
         for (JobExecutionContext executingJob : executingJobs) {  
@@ -148,7 +142,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public void pauseJob(Quartz quartz) throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         JobKey jobKey = JobKey.jobKey(quartz.getJobName(), quartz.getJobGroup());  
         scheduler.pauseJob(jobKey);  
     }  
@@ -160,7 +153,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public void resumeJob(Quartz quartz) throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         JobKey jobKey = JobKey.jobKey(quartz.getJobName(), quartz.getJobGroup());  
         scheduler.resumeJob(jobKey);  
     }  
@@ -172,7 +164,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public void deleteJob(Quartz quartz) throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         JobKey jobKey = JobKey.jobKey(quartz.getJobName(), quartz.getJobGroup());  
         scheduler.deleteJob(jobKey);  
     }  
@@ -184,7 +175,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public void runAJobNow(Quartz quartz) throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         JobKey jobKey = JobKey.jobKey(quartz.getJobName(), quartz.getJobGroup());  
         scheduler.triggerJob(jobKey);
     }  
@@ -196,7 +186,6 @@ public class QuartzUtil {
      * @throws SchedulerException 
      */  
     public void updateJobCron(Quartz quartz) throws SchedulerException {  
-        Scheduler scheduler = getStdScheduler();  
         TriggerKey triggerKey = TriggerKey.triggerKey(quartz.getJobName(), quartz.getJobGroup());  
         CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);  
         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(quartz.getCronExpression());  

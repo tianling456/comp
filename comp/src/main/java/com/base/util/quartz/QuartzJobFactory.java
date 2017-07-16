@@ -5,7 +5,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
-import com.base.entity.Quartz;
+import com.comp.entities.Quartz;
 /**
  *项目名：
  *创建时间：2017-5-3

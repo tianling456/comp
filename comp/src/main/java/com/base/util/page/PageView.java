@@ -1,6 +1,7 @@
 ﻿package com.base.util.page;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,7 +13,8 @@ public class PageView <T>{
 	/**
 	 * 分页数据
 	 */
-	private List<T> records;
+	private List<T> recordForList;
+	
 	
 	/**
 	 * 页码的开始索引类
@@ -102,9 +104,9 @@ public class PageView <T>{
 	 * @param records 结果集合
 	 */
 
-	public void setQueryResult(long rowCount, List<T> records){
+	public void setQueryResult(long rowCount, List<T> recordForList){
 		setRowCount(rowCount);
-		setRecords(records);
+		setRecordForList(recordForList);
 	}
 
 	public void setRowCount(long rowCount) {
@@ -115,12 +117,12 @@ public class PageView <T>{
 		);
 	}
 	
-	public List<T> getRecords() {
-		return records;
+	public List<T> getRecordForList() {
+		return recordForList;
 	}
 
-	public void setRecords(List<T> records) {
-		this.records = records;
+	public void setRecordForList(List<T> recordForList) {
+		this.recordForList = recordForList;
 	}
 
 

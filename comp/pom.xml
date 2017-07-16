@@ -506,7 +506,7 @@
 			<artifactId>quartz-jobs</artifactId>
 			<version>2.2.1</version>
 		</dependency>
-		
+
 		<!-- rar解压包 -->
 		<dependency>
 			<groupId>com.github.junrar</groupId>
@@ -527,9 +527,35 @@
 			<version>3.0.0</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20170516</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ezmorph</groupId>
+			<artifactId>ezmorph</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		
+		<!-- google生成二维码 -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.zxing</groupId>
+		    <artifactId>javase</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
+		<!-- QRCode生成二维码 -->
+		<dependency>
+			<groupId>QRCode</groupId>
+			<artifactId>QRCode</artifactId>
+			<version>3.0</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<finalName>comp</finalName>
 		<plugins>

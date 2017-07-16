@@ -3,6 +3,7 @@ package com.comp.service.menu;
 import java.util.List;
 import java.util.Map;
 
+import com.base.util.page.PageView;
 import com.comp.entities.Menu;
 
 /**
@@ -15,6 +16,6 @@ import com.comp.entities.Menu;
  *类功能描述：
  */
 public interface MenuService {
-	public List<Menu> queryMenuForList(Map<String,Object> whereCases);
+	public PageView<Menu> queryMenuForList(Map<String,Object> whereCases,PageView<Menu> page);
 }
 

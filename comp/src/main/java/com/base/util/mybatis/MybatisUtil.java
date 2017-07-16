@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionManager;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.base.util.spring.SpringUtil;
+import com.base.util.thread.ThreadLocal;
 
 /**
  *项目名：
@@ -19,14 +20,19 @@ import com.base.util.spring.SpringUtil;
  *		        也可以 extends SqlSessionDaoSupport
  */
 public abstract class MybatisUtil{
+	private static final ThreadLocal<SqlSession> threadSession = new ThreadLocal<SqlSession>();
 	/**
 	 * 通过spring的容器获取SqlSession
 	 * @return
 	 */
 	public static SqlSession getSession(){
+		SqlSession session = threadSession.get();
 //		SqlSession session = SpringUtil.getBean("sqlSession", SqlSessionTemplate.class);
 		SqlSessionFactory sqlSessionFactory = SpringUtil.getBean("sqlSessionFactoryBean", SqlSessionFactory.class);
-		SqlSession session = SqlSessionManager.newInstance(sqlSessionFactory);
+		if (session == null) {  
+			session = SqlSessionManager.newInstance(sqlSessionFactory);
+			threadSession.set(session);
+		}
 //		SqlSession session = sqlSessionFactory.openSession();
 		return session;
 	}

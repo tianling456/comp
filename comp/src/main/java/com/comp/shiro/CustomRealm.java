@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
 
 //import com.base.util.shiro.ShiroUtil;
+import com.base.util.page.PageView;
 import com.comp.entities.Menu;
 import com.comp.entities.User;
 import com.comp.service.menu.MenuService;
@@ -62,7 +63,8 @@ public class CustomRealm extends AuthorizingRealm {
 		List<Menu> menuList = null;
 		List<String> permissionList = new ArrayList<String>();
 		try {
-			menuList = menuService.queryMenuForList(whereCases);
+			PageView<Menu> page = new PageView<Menu>();
+			page = menuService.queryMenuForList(whereCases,page);
 			for(Menu menu:menuList){
 				permissionList.add(menu.getUrl());
 			}

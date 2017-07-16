@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.base.util.page.PageView;
 import com.comp.dao.menu.MenuDao;
 import com.comp.entities.Menu;
 import com.comp.service.menu.MenuService;
@@ -27,8 +28,11 @@ public class MenuServiceImpl implements MenuService{
 	private MenuDao menuDao;
 
 	@Override
-	public List<Menu> queryMenuForList(Map<String, Object> whereCases) {
-		return menuDao.queryMenuForList(whereCases);
+	public PageView<Menu> queryMenuForList(Map<String, Object> whereCases,PageView<Menu> page){
+		whereCases.put("page", page);
+		List<Menu> list= menuDao.queryMenuForList(whereCases);
+		page.setRecordForList(list);
+		return page;
 	}
 }
 

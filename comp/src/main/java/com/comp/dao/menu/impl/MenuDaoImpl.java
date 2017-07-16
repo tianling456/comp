@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import com.base.mybatis.impl.MybatisDaoImpl;
+import com.base.util.page.PageView;
 import com.comp.dao.menu.MenuDao;
 import com.comp.entities.Menu;
 
@@ -21,7 +22,7 @@ import com.comp.entities.Menu;
 @Component("menuDao")
 public class MenuDaoImpl extends MybatisDaoImpl<Menu,String> implements MenuDao{
 	@Override
-	public List<Menu> queryMenuForList(Map<String, Object> whereCases) {
+	public List<Menu> queryMenuForList(Map<String, Object> whereCases){
 		return super.queryForList("queryMenuByUserId", whereCases);
 	}
 }

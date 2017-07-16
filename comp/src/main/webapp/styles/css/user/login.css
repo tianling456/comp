@@ -1,0 +1,131 @@
+body{
+	margin: 0 auto;
+	padding:0;
+	font: normal 100% Helvetica, Arial, sans-serif;
+}
+.login-form{
+	position:absolute;
+	top:30%;
+	height:40%;
+	left:30%;
+	width:40%;
+	box-shadow:0 0 20px rgba(230, 230, 230, .8); 
+	border-radius:5px;
+	border-color:rgba(234, 234, 234, .8);
+	background-color:rgba(254, 254, 254, .8);
+}
+.login-code{
+	margin:0px;
+	padding:10px;
+	height:50px;
+	width:50%;
+	font-size:20px;
+	text-align:center;
+	vertical-align:middle;
+	float: left;
+	background-color: #008CBA;
+	font-weight:bold;
+}
+.login-user{
+	margin:0px;
+	padding:10px;
+	text-align:center;
+	vertical-align:middle;
+	float: left;
+	font-size:20px;
+	height:50px;
+	width:50%;
+	background-color: #008CBA; 
+	font-weight:bold;
+}
+.login-input{
+	clear:both;
+}
+@media screen and (min-width: 1201px){
+	.login-form{
+		position:absolute;
+		top:30%;
+		height:40%;
+		left:30%;
+		width:40%;
+		box-shadow:0 0 20px rgba(230, 230, 230, .8); 
+		border-radius:5px;
+		border-color:rgba(234, 234, 234, .8);
+		background-color:rgba(254, 254, 254, .8);
+	}
+	.login-code{
+		margin:0px;
+		padding:10px;
+		height:50px;
+		width:50%;
+		font-size:20px;
+		text-align:center;
+		vertical-align:middle;
+		float: left;
+		background-color: #008CBA; 
+	}
+}
+@media screen and (max-width: 1200px){
+	.login-form{
+		position:absolute;
+		top:30%;
+		height:40%;
+		left:30%;
+		width:40%;
+		box-shadow:0 0 20px rgba(230, 230, 230, .8); 
+		border-radius:5px;
+		border-color:rgba(234, 234, 234, .8);
+		background-color:rgba(254, 254, 254, .8);
+	}
+	.login-code{
+		margin:0px;
+		padding:10px;
+		height:50px;
+		width:50%;
+		font-size:20px;
+		text-align:center;
+		vertical-align:middle;
+		float: left;
+		background-color: #008CBA; 
+	}
+}
+@media screen and (max-width: 901px) {
+	.login-form{
+		position:absolute;
+		height:100%;
+		width:100%;
+		box-shadow:0 0 20px rgba(230, 230, 230, .8); 
+		border-radius:5px;
+	}
+	.login-code{
+		margin:0px;
+		padding:10px;
+		height:50px;
+		width:50%;
+		font-size:20px;
+		text-align:center;
+		vertical-align:middle;
+		float: left;
+		background-color: #008CBA; 
+	}
+}
+@media screen and (max-width: 500px){
+	.login-form{
+		position:absolute;
+		height:100%;
+		width:100%;
+		box-shadow:0 0 20px rgba(230, 230, 230, .8); 
+		border-radius:5px;
+	}
+	.login-code{
+		margin:0px;
+		padding:10px;
+		height:50px;
+		width:50%;
+		font-size:20px;
+		text-align:center;
+		vertical-align:middle;
+		float: left;
+		background-color: #008CBA; 
+	}
+}

@@ -11,7 +11,7 @@ import org.hibernate.SessionFactory;
 import com.base.common.exception.app.AppException;
 import com.base.util.spring.SpringUtil;
 
-//import com.base.util.thread.ThreadLocal;
+import com.base.util.thread.ThreadLocal;
 
 /**
  *项目名：

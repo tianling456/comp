@@ -20,10 +20,32 @@
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>6000</param-value>
 	</context-param>
+	<!-- 配置自定义标签 -->
+	<!-- <jsp-config>  
+    <taglib>  
+        <taglib-uri>/comp</taglib-uri>  
+        <taglib-location>/WEB-INF/comp.tld</taglib-location>  
+    </taglib>  
+  </jsp-config>   --> 
 
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
+	<session-config>
+		<session-timeout>108000000</session-timeout>
+	</session-config>
+	<!-- <listener>
+		<listener-class>com.comp.web.listener.HttpSessionAttribute</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.comp.web.listener.ServletContextAttribute</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>com.comp.web.listener.ServletRequestAttribute</listener-class>
+	</listener> -->
+	
 
 	<!-- 字符过滤器 -->
 	<filter>
@@ -39,6 +61,15 @@
 		<url-pattern>/</url-pattern>
 	</filter-mapping>
 
+	<!-- 请求url日志记录过滤器 --> 
+    <!-- <filter>    
+        <filter-name>logRequestURLfilter</filter-name>    
+        <filter-class>com.comp.web.filter.LogRequestURLFilter</filter-class>    
+    </filter>    
+    <filter-mapping>    
+        <filter-name>logRequestURLfilter</filter-name>    
+        <url-pattern>/*</url-pattern>    
+    </filter-mapping> -->
 
 	<!-- SpringSecurity必须的filter <filter> <filter-name>springSecurityFilterChain</filter-name> 
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
@@ -62,16 +93,16 @@
 	</servlet-mapping>
 	<!-- shiro的filter -->
 	<!-- shiro过虑器，DelegatingFilterProxy通过代理模式将spring容器中的bean和filter关联起来 -->
-	<filter>
+	<!-- <filter>
 		<filter-name>delegatingFilterProxy</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> -->
 		<!-- 设置true由servlet容器控制filter的生命周期 -->
-		<init-param>
+		<!-- <init-param>
 			<param-name>targetFilterLifecycle</param-name>
 			<param-value>true</param-value>
-		</init-param>
+		</init-param> -->
 		<!-- 设置spring容器filter的bean id，如果不设置则找与filter-name一致的bean -->
-		<init-param>
+		<!-- <init-param>
 			<param-name>targetBeanName</param-name>
 			<param-value>shiroFilter</param-value>
 		</init-param>
@@ -79,7 +110,7 @@
 	<filter-mapping>
 		<filter-name>delegatingFilterProxy</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 	<!-- 防止spring内存溢出监听器 -->
 	<listener>
@@ -101,40 +132,10 @@
 		<url-pattern>/druid/*</url-pattern>
 	</servlet-mapping>
 
-	<!-- google 验证码 -->
-	<servlet>
-		<servlet-name>Kaptcha</servlet-name>
-		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
-		<init-param>
-			<param-name>kaptcha.image.width</param-name>
-			<param-value>200</param-value>
-			<description>Width in pixels of the kaptcha image.</description>
-		</init-param>
-		<init-param>
-			<param-name>kaptcha.image.height</param-name>
-			<param-value>50</param-value>
-			<description>Height in pixels of the kaptcha image.</description>
-		</init-param>
-		<init-param>
-			<param-name>kaptcha.textproducer.char.length</param-name>
-			<param-value>4</param-value>
-			<description>The number of characters to display.</description>
-		</init-param>
-		<init-param>
-			<param-name>kaptcha.noise.impl</param-name>
-			<param-value>com.google.code.kaptcha.impl.NoNoise</param-value>
-			<description>The noise producer.</description>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Kaptcha</servlet-name>
-		<url-pattern>/kaptcha.jpg</url-pattern>
-	</servlet-mapping>
-
 	<!-- 应用weblogic的管理器 -->
 	<!-- <init-param> <param-name>wl-dispatch-policy</param-name> <param-value>highpriority_workmanager</param-value> 
 		</init-param> -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.com</welcome-file>
 	</welcome-file-list>
 </web-app>

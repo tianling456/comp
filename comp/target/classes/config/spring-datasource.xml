@@ -22,7 +22,8 @@
 		</property>
 	</bean>
 	<!-- 阿里巴巴数据源  Oracle-->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+	<!-- <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" -->
+	<bean id="dataSource" class="com.base.util.dbutil.DBUtils"
 		init-method="init" destroy-method="close">
 		<!-- 驱动名称 -->
 		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" /> -->
@@ -33,10 +34,11 @@
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/tianling" />
 		<!-- <property name="url" value="${jdbc.url}" /> -->
 		<!-- 数据库用户名称 -->
-		<property name="username" value="root" />
+		<property name="username" value="6a51c543d20aefa82c44107cc62f8829" />
+		<!-- <property name="username" value="d151bb6bb95bb283284a750b5f3a1fab" /> -->
 		<!-- <property name="username" value="${jdbc.username}" /> -->
-		<!-- 数据库密码 -->
-		<property name="password" value="tianling" />
+		<!-- 数据库密码 config.decrypt为true为加密数据库连接密码 -->
+		<property name="password" value="d151bb6bb95bb283284a750b5f3a1fab" />
 		<!-- <property name="password" value="${jdbc.password}" /> -->
 		<property name="connectionProperties" value="config.decrypt=true" />
 		<!-- <property name="connectionProperties" value="${jdbc.connectionProperties}" /> -->

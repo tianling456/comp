@@ -16,7 +16,7 @@
 	<bean id="pagePlugin" class="com.base.util.page.PagePlugin">
 		<property name="properties">
 			<props>
-				<prop key="dialect">com.base.util.jdbc.dialet.OracleDialect</prop>
+				<prop key="dialect">com.base.util.jdbc.dialet.MySQLDialect</prop>
 				<prop key="pageSqlId">.*query.*</prop>
 			</props>
 		</property>

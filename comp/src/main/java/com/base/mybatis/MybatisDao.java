@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.base.util.page.PageView;
+
 
 /**
  *项目名：
@@ -95,19 +97,7 @@ public interface MybatisDao <T,ID extends Serializable>{
 	 * 没有条件的查询
 	 * @return 返回查找的所有的记录
 	 */
-	public List<T> queryForList(String methodName);
-	
-	/**
-	 * 查找所有记录：
-	 * 根据传入的指定id查找指定的所有记录；
-	 * id不能为空，为空会报id为空异常；
-	 * 如果找不到会提示没有记录，并抛出记录为空的异常；
-	 * @param id 传入的id值，可以是String类型，
-	 * 			  也可以是Number类型，也可以是自定义的javabean，
-	 * 			 但是该javabean必须实现java.io.Serializable序列号接口
-	 * @return  返回指定id的所有记录
-	 */
-	public List<T> queryForList(ID id,String methodName);
+	public List<T> queryForList(String methodName,PageView<T> page);
 	
 	/**
 	 * 查找所有记录：

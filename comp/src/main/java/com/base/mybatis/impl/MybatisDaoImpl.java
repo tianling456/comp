@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.base.mybatis.MybatisDao;
 import com.base.util.mybatis.MybatisUtil;
+import com.base.util.page.PageView;
 
 /**
  *项目名：
@@ -72,17 +73,13 @@ public class MybatisDaoImpl<T,ID extends Serializable> implements MybatisDao<T,I
 	}
 
 	@Override
-	public List<T> queryForList(String methodName) {
+	public List<T> queryForList(String methodName,PageView<T> page) {
 		return MybatisUtil.getSession().selectList(getNameSpace(methodName));
 	}
 
 	@Override
-	public List<T> queryForList(ID id,String methodName) {
-		return MybatisUtil.getSession().selectList(getNameSpace(methodName), id);
-	}
-
-	@Override
 	public <V,K> List<T> queryForList(String methodName,Map<V,K> whereCases) {
+		
 		return MybatisUtil.getSession().selectList(getNameSpace(methodName), whereCases);
 	}
 

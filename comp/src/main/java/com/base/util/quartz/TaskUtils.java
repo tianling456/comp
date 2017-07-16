@@ -21,8 +21,8 @@ import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 
-import com.base.entity.Quartz;
 import com.base.util.spring.SpringUtil;
+import com.comp.entities.Quartz;
 
 /**
  * 项目名： 创建时间：2017-5-3 创建人：Aobo 类名：TaskUtils 所属包名：com.base.util.quartz 项目名称：comp
