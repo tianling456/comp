@@ -19,22 +19,6 @@ import org.apache.commons.codec.binary.Hex;
 
 /**
  * 加密工具。
- * 
- * <p>
- * Title: DoradoUtil.java
- * </p>
- * <p>
- * Description: com.computech.common.util
- * </p>
- * <p>
- * Copyright: Copyright (c)
- * </p>
- * <p>
- * Company: computech
- * </p>
- * 
- * @author (dongmy,wangke)
- * @version 1.0
  */
 public class Encoder {
 	private static byte[] keyBytes = { 0x33, 0x31, 0x38, 0x31, 0x36, 0x37, 0x38, 0x34, 0x34, 0x35, 0x32, 0x31, 0x37, 0x39, 0x30, 0x35 };
