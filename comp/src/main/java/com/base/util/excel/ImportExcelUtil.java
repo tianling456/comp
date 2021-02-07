@@ -1,12 +1,9 @@
 /**
- * 项目名称:贵阳农商行客户识别系统
  * 文件名称:ImportExcelUtil.java
  * 版本:1.0
  * JDK版本:1.6
  * 创建日期:2016 下午5:58:47
  *
- * Copyright (c) 2007-2013 四川日达科技有限公司 版权所有
- * www.hk-computech.com. All right reserved. 
  */
 package com.base.util.excel;
 
