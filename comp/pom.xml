@@ -20,7 +20,7 @@
 		<!-- slf4j日志文件管理包版本 -->
 		<slf4j.version>1.7.7</slf4j.version>
 		<!-- hibernate日志文件管理包版本 -->
-		<hibernate.version>5.0.0.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 		<!-- cglib 版本控制 -->
 		<cglib.version>3.2.2</cglib.version>
 		<!-- atomikos版本控制 -->
