@@ -10,7 +10,7 @@
 
 	<properties>
 		<!-- spring版本配置 -->
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>5.2.20.RELEASE</spring.version>
 		<!-- shiro版本配置 -->
 		<shiro.version>1.2.5</shiro.version>
 		<!-- mybatis版本配置 -->
